@@ -23,6 +23,15 @@
 hs_err_pid*
 replay_pid*
 
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+
 # docs
 docs/Projects/*
 !docs/Projects/*.zip
