@@ -1,0 +1,28 @@
+meta {
+  name: Signup Client
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/auth/signup/client
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "username": "FixBambucea",
+      "password": "FixBambucea12",
+      "nume": "Fix",
+      "prenume": "Bambucea",
+      "email": "fix.bambucea@hotmail.com",
+      "nrTelefon": "0775200300",
+      "adresa": "Bucuresti"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
