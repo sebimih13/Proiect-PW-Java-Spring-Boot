@@ -1,11 +1,11 @@
 meta {
-  name: Signup Client
+  name: Signup Customer
   type: http
   seq: 3
 }
 
 post {
-  url: {{url}}/auth/signup/client
+  url: {{url}}/auth/signup/customer
   body: json
   auth: inherit
 }
@@ -14,11 +14,11 @@ body:json {
   {
       "username": "FixBambucea",
       "password": "FixBambucea12",
-      "nume": "Fix",
-      "prenume": "Bambucea",
+      "firstName": "Fix",
+      "lastName": "Bambucea",
       "email": "fix.bambucea@hotmail.com",
-      "nrTelefon": "0775200300",
-      "adresa": "Bucuresti"
+      "phoneNumber": "0775200300",
+      "address": "Bucuresti"
   }
 }
 

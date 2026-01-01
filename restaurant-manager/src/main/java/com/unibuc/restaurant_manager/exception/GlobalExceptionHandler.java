@@ -4,15 +4,14 @@ import com.unibuc.restaurant_manager.dto.ErrorStringDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
-import static com.unibuc.restaurant_manager.utils.ResponseUtils.badRequest;
 import static com.unibuc.restaurant_manager.utils.ResponseUtils.unauthorized;
 
 @RestControllerAdvice
@@ -25,13 +24,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        var errorMessage = e
-                .getBindingResult()
-                .getAllErrors()
-                .stream().map(ObjectError::getDefaultMessage)
-                .collect(Collectors.joining());
+        Map<String, String> errors = new HashMap<>();
+        e.getBindingResult()
+                .getFieldErrors()
+                .forEach(error ->
+                        errors.put(error.getField(), error.getDefaultMessage())
+                );
 
-        return badRequest(errorMessage);
+        return ResponseEntity.badRequest().body(Map.of("errors", errors));
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<?> handleValidationException(ValidationException e) {
-        return badRequest(e.getMessage());
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ExceptionHandler(UnauthorizedAccessException.class)
