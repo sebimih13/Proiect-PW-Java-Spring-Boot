@@ -13,11 +13,23 @@ import java.time.LocalDate;
 @SuperBuilder
 @Entity
 @Table(name = "employee")
-public abstract class Employee extends User {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Employee extends User {
 
     private Integer salary;
 
+    @Column(nullable = false)
     private LocalDate birthDate;
+
+    @Column(nullable = false)
+    private String CNP;
+
+    @Column(nullable = false)
+    private String IDSeries;
+
+    @Column(nullable = false)
+    private String IDNumber;
+
     private LocalDate employmentDate;
     private Integer workHoursPerDay;
     private Integer ptoDays;

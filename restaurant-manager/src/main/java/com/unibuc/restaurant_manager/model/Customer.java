@@ -13,6 +13,7 @@ import java.util.List;
 @SuperBuilder
 @Entity
 @Table(name = "customer")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Customer extends User {
 
     @OneToMany(mappedBy = "customer")

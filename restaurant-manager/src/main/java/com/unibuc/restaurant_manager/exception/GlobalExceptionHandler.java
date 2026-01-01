@@ -4,9 +4,11 @@ import com.unibuc.restaurant_manager.dto.ErrorStringDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import tools.jackson.databind.exc.InvalidFormatException;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
@@ -53,6 +55,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedAccessException.class)
     public ResponseEntity<ErrorStringDto> handleUnauthorized() {
         return unauthorized();
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        Map<String, String> errors = new HashMap<>();
+
+        if (e.getCause() instanceof InvalidFormatException invalidFormatEx) {
+            invalidFormatEx.getPath().forEach(ref -> {
+                errors.put(ref.getPropertyName(), "Invalid date value. Please use the correct format (yyyy-MM-dd)");
+            });
+
+            return ResponseEntity.badRequest().body(Map.of("errors", errors));
+        }
+
+        errors.put("error", "Invalid date format");
+        return ResponseEntity.badRequest().body(Map.of("errors", errors));
     }
 
 }

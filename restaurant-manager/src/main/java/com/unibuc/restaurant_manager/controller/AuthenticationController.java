@@ -29,14 +29,14 @@ public class AuthenticationController {
 
     @PostMapping("/signup/customer")
     @ResponseBody
-    public ResponseEntity<User> signupCustomer(@Valid @RequestBody CustomerDto client) {
-        return created(authenticationService.signupClient(client));
+    public ResponseEntity<User> signupCustomer(@Valid @RequestBody CustomerDto customer) {
+        return created(authenticationService.signupCustomer(customer));
     }
 
-//    @PostMapping("/signup/employee")
-//    @ResponseBody
-//    public ResponseEntity<User> signupAngajat(@Valid @RequestBody EmployeeDto angajat) {
-//        return created(authenticationService.signupAngajat(angajat));
-//    }
+    @PostMapping("/signup/employee")
+    @ResponseBody
+    public ResponseEntity<User> signupEmployee(@Valid @RequestBody EmployeeDto employee) {
+        return created(authenticationService.signupEmployee(employee));
+    }
 
 }

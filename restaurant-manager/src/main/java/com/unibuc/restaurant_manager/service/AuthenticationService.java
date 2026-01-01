@@ -1,12 +1,16 @@
 package com.unibuc.restaurant_manager.service;
 
+import ch.qos.logback.core.net.server.Client;
 import com.unibuc.restaurant_manager.dto.CustomerDto;
 import com.unibuc.restaurant_manager.dto.CredentialsDto;
+import com.unibuc.restaurant_manager.dto.EmployeeDto;
 import com.unibuc.restaurant_manager.dto.TokenDto;
 import com.unibuc.restaurant_manager.exception.ValidationException;
 import com.unibuc.restaurant_manager.model.Customer;
+import com.unibuc.restaurant_manager.model.Employee;
 import com.unibuc.restaurant_manager.model.User;
 import com.unibuc.restaurant_manager.repository.CustomerRepository;
+import com.unibuc.restaurant_manager.repository.EmployeeRepository;
 import com.unibuc.restaurant_manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +19,19 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     @Autowired
-    private UserRepository utilizatorRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private CustomerRepository clientRepository;
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private JWTService jwtService;
 
     public TokenDto login(CredentialsDto credentials) {
-        User user = utilizatorRepository.findByUsername(credentials.getUsername());
+        User user = userRepository.findByUsername(credentials.getUsername());
 
         if (user != null && JWTService.isPasswordValid(credentials.getPassword(), user.getPassword())) {
             return new TokenDto(jwtService.getToken(String.valueOf(user.getId())));
@@ -33,25 +40,37 @@ public class AuthenticationService {
         throw new ValidationException("Invalid username or password");
     }
 
-    public User signupClient(CustomerDto client) {
-        Customer newClient = Customer.builder()
-                .username(client.getUsername())
-                .password(JWTService.encryptPassword(client.getPassword()))
-                .email(client.getEmail())
-                .firstName(client.getFirstName())
-                .lastName(client.getLastName())
-                .phoneNumber(client.getPhoneNumber())
-                .address(client.getAddress())
+    public Customer signupCustomer(CustomerDto customer) {
+        Customer newCustomer = Customer.builder()
+                .username(customer.getUsername())
+                .password(JWTService.encryptPassword(customer.getPassword()))
+                .email(customer.getEmail())
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .phoneNumber(customer.getPhoneNumber())
+                .address(customer.getAddress())
                 .build();
 
-        clientRepository.save(newClient);
-        return newClient;
+        customerRepository.save(newCustomer);
+        return newCustomer;
     }
 
-//    public User signup(CustomerDto angajat) {
-//
-//
-//        return newAngajat;
-//    }
+    public Employee signupEmployee(EmployeeDto employee) {
+        Employee newEmployee = Employee.builder()
+                .username(employee.getUsername())
+                .password(JWTService.encryptPassword(employee.getPassword()))
+                .email(employee.getEmail())
+                .firstName(employee.getFirstName())
+                .lastName(employee.getLastName())
+                .phoneNumber(employee.getPhoneNumber())
+                .birthDate(employee.getBirthDate())
+                .CNP(employee.getCNP())
+                .IDSeries(employee.getIDSeries())
+                .IDNumber(employee.getIDNumber())
+                .build();
+
+        employeeRepository.save(newEmployee);
+        return newEmployee;
+    }
 
 }

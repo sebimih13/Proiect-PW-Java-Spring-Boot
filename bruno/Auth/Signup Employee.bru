@@ -1,0 +1,31 @@
+meta {
+  name: Signup Employee
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/auth/signup/employee
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "username": "FixBambuceaEmployee",
+      "password": "FixBambuceaEmployee1234",
+      "firstName": "FixEmployee",
+      "lastName": "Bambucea",
+      "email": "fixemployee.bambucea@hotmail.com",
+      "phoneNumber": "0775200300",
+      "CNP": "0123456789123",
+      "IDSeries": "RQ",
+      "IDNumber": "501605",
+      "birthDate": "13-04-2000"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
