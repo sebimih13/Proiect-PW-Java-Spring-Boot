@@ -1,16 +1,15 @@
 meta {
-  name: Read
+  name: Remove order
   type: http
-  seq: 1
+  seq: 7
 }
 
-get {
-  url: {{url}}/customers/{{customerId}}
+delete {
+  url: 
   body: none
   auth: inherit
 }
 
 settings {
   encodeUrl: true
-  timeout: 0
 }
