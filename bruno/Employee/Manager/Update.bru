@@ -1,0 +1,16 @@
+meta {
+  name: Update
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{url}}/employees/manager
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
