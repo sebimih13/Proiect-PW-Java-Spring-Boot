@@ -8,9 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "manager")
-public class Manager extends Angajat {
+public class Manager extends Employee {
 
-    @Column(name = "nivel_educatie")
-    private String nivelEducatie;
+    private String educationLevel;
 
 }

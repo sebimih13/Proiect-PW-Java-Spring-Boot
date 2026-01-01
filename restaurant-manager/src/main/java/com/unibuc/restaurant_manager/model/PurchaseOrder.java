@@ -11,11 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "comanda")
-public class Comanda {
+@Table(name = "purchase_order")
+public class PurchaseOrder {
 
     @Id
-    @Column(name = "id_comanda")
+    @Column(name = "id_purchase_order")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String status;
@@ -23,14 +24,14 @@ public class Comanda {
     private LocalTime ora;
 
     @ManyToOne
-    @JoinColumn(name = "id_client")
-    private Client client;
+    @JoinColumn(name = "id_customer")
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "id_restaurant")
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "comanda")
-    private List<Contine> produse;
+    @OneToMany(mappedBy = "purchaseOrder")
+    private List<Contains> products;
 
 }

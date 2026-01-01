@@ -14,18 +14,19 @@ public class Restaurant {
 
     @Id
     @Column(name = "id_restaurant")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nume;
-    private Integer nrStele;
-    private String oras;
-    private String strada;
-    private String nrTelefon;
+    private String name;
+    private Integer stars;
+    private String city;
+    private String address;
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "restaurant")
-    private List<Angajat> angajati;
+    private List<Employee> employees;
 
     @OneToMany(mappedBy = "restaurant")
-    private List<Comanda> comenzi;
+    private List<PurchaseOrder> orders;
 
 }

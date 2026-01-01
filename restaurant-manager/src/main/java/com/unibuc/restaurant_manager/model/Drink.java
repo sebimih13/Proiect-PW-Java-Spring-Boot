@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "barman")
-public class Barman extends Angajat {
+@Table(name = "drink")
+public class Drink extends Product {
 
-    private String specializare;
+    private Integer ml;
 
 }

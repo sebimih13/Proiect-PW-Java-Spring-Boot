@@ -7,16 +7,17 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "produs")
+@Table(name = "product")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Produs {
+public abstract class Product {
 
     @Id
-    @Column(name = "id_produs")
+    @Column(name = "id_product")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nume;
-    private String descriere;
-    private Integer pret;
+    private String name;
+    private String description;
+    private Integer price;
 
 }

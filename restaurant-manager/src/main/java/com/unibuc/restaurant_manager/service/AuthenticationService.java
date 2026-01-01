@@ -1,13 +1,13 @@
 package com.unibuc.restaurant_manager.service;
 
-import com.unibuc.restaurant_manager.dto.ClientDto;
+import com.unibuc.restaurant_manager.dto.CustomerDto;
 import com.unibuc.restaurant_manager.dto.CredentialsDto;
 import com.unibuc.restaurant_manager.dto.TokenDto;
 import com.unibuc.restaurant_manager.exception.ValidationException;
-import com.unibuc.restaurant_manager.model.Client;
-import com.unibuc.restaurant_manager.model.Utilizator;
-import com.unibuc.restaurant_manager.repository.ClientRepository;
-import com.unibuc.restaurant_manager.repository.UtilizatorRepository;
+import com.unibuc.restaurant_manager.model.Customer;
+import com.unibuc.restaurant_manager.model.User;
+import com.unibuc.restaurant_manager.repository.CustomerRepository;
+import com.unibuc.restaurant_manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     @Autowired
-    private UtilizatorRepository utilizatorRepository;
+    private UserRepository utilizatorRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private CustomerRepository clientRepository;
 
     @Autowired
     private JWTService jwtService;
 
     public TokenDto login(CredentialsDto credentials) {
-        Utilizator user = utilizatorRepository.findByUsername(credentials.getUsername());
+        User user = utilizatorRepository.findByUsername(credentials.getUsername());
 
         if (user != null && JWTService.isPasswordValid(credentials.getPassword(), user.getPassword())) {
             return new TokenDto(jwtService.getToken(String.valueOf(user.getId())));
@@ -33,19 +33,25 @@ public class AuthenticationService {
         throw new ValidationException("Invalid username or password");
     }
 
-    public Utilizator signupClient(ClientDto client) {
-        Client newClient = Client.builder()
+    public User signupClient(CustomerDto client) {
+        Customer newClient = Customer.builder()
                 .username(client.getUsername())
                 .password(JWTService.encryptPassword(client.getPassword()))
                 .email(client.getEmail())
-                .nume(client.getNume())
-                .prenume(client.getPrenume())
-                .nrTelefon(client.getNrTelefon())
-                .adresa(client.getAdresa())
+                .firstName(client.getFirstName())
+                .lastName(client.getLastName())
+                .phoneNumber(client.getPhoneNumber())
+                .address(client.getAddress())
                 .build();
 
         clientRepository.save(newClient);
         return newClient;
     }
+
+//    public User signup(CustomerDto angajat) {
+//
+//
+//        return newAngajat;
+//    }
 
 }

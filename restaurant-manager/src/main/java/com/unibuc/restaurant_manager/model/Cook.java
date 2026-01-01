@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "bautura")
-public class Bautura extends Produs {
+@Table(name = "cook")
+public class Cook extends Employee {
 
-    private Integer ml;
+    private String specialization;
 
 }

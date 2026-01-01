@@ -7,8 +7,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientDto extends UtillizatorDto {
+public class BartenderDto extends EmployeeDto {
 
-    private String adresa;
+    private String specialization;
 
 }

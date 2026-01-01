@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "preparat")
-public class Preparat extends Produs {
+@Table(name = "waiter")
+public class Waiter extends Employee {
 
-    private Integer grame;
+    private String englishLevel;
 
 }

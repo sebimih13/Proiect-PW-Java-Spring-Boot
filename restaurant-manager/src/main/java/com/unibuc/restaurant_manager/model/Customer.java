@@ -12,12 +12,16 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Entity
-@Table(name = "client")
-public class Client extends Utilizator {
+@Table(name = "customer")
+public class Customer extends User {
 
-    @OneToMany(mappedBy = "client")
-    private List<Comanda> comenzi;
+    @OneToMany(mappedBy = "customer")
+    private List<PurchaseOrder> orders;
 
-    private String adresa;
+    private String address;
+    private Integer loyaltyPoints;
+
+    // TODO: lastVisitDate
+    // TODO: feedbackScore
 
 }

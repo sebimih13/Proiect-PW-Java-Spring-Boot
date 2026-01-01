@@ -10,14 +10,13 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder
 @Entity
-@Table(name = "utilizator")
+@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Utilizator {
+public abstract class User {
 
     @Id
-    @Column(name = "id_utilizator")
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(lombok.AccessLevel.NONE)
     private Integer id;
 
     @Column(unique = true, nullable = false)
@@ -27,15 +26,14 @@ public abstract class Utilizator {
     private String password;
 
     @Column(nullable = false)
-    private String nume;
+    private String lastName;
 
     @Column(nullable = false)
-    private String prenume;
+    private String firstName;
 
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false, name = "nr_telefon")
-    private String nrTelefon;
+    private String phoneNumber;
 
 }

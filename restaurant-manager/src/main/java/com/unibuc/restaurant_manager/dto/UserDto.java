@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UtillizatorDto {
+public class UserDto {
 
     @NotBlank(message = "username is required and cannot be blank")
     private String username;
@@ -18,18 +18,18 @@ public class UtillizatorDto {
     @NotBlank(message = "password is required and cannot be blank")
     private String password;
 
-    @NotBlank(message = "nume is required and cannot be blank")
-    private String nume;
+    @NotBlank(message = "firstName is required and cannot be blank")
+    private String firstName;
 
-    @NotBlank(message = "prenume is required and cannot be blank")
-    private String prenume;
+    @NotBlank(message = "lastName is required and cannot be blank")
+    private String lastName;
 
     @NotBlank(message = "email is required and cannot be blank")
-    @Email(message = "Email must be a valid email address")
+    @Email(message = "email must be a valid email address")
     private String email;
 
-    @NotBlank(message = "nrTelefon is required and cannot be blank")
-    @Pattern(regexp = "\\d{10}", message = "nrTelefon must be exactly 10 digits")
-    private String nrTelefon;
+    @NotBlank(message = "phoneNumber is required and cannot be blank")
+    @Pattern(regexp = "\\d{10}", message = "phoneNumber must be exactly 10 digits")
+    private String phoneNumber;
 
 }

@@ -1,9 +1,10 @@
 package com.unibuc.restaurant_manager.controller;
 
-import com.unibuc.restaurant_manager.dto.ClientDto;
+import com.unibuc.restaurant_manager.dto.EmployeeDto;
+import com.unibuc.restaurant_manager.dto.CustomerDto;
 import com.unibuc.restaurant_manager.dto.CredentialsDto;
 import com.unibuc.restaurant_manager.dto.TokenDto;
-import com.unibuc.restaurant_manager.model.Utilizator;
+import com.unibuc.restaurant_manager.model.User;
 import com.unibuc.restaurant_manager.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +23,20 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<TokenDto> login(@RequestBody @Valid CredentialsDto credentials) {
+    public ResponseEntity<TokenDto> login(@Valid @RequestBody CredentialsDto credentials) {
         return ok(authenticationService.login(credentials));
     }
 
-    @PostMapping("/signup/client")
+    @PostMapping("/signup/customer")
     @ResponseBody
-    public ResponseEntity<Utilizator> signupClient(@RequestBody @Valid ClientDto client) {
+    public ResponseEntity<User> signupCustomer(@Valid @RequestBody CustomerDto client) {
         return created(authenticationService.signupClient(client));
     }
 
-//    @PostMapping("/signup/angajat")
+//    @PostMapping("/signup/employee")
 //    @ResponseBody
-//    public ResponseEntity<Utilizator> signupAngajat(@Valid @RequestBody AngajatDto angajat) {
-//        return created(authenticationService.signupClient(angajat));
+//    public ResponseEntity<User> signupAngajat(@Valid @RequestBody EmployeeDto angajat) {
+//        return created(authenticationService.signupAngajat(angajat));
 //    }
 
 }

@@ -4,20 +4,27 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Entity
-@Table(name = "angajat")
-public abstract class Angajat extends Utilizator {
+@Table(name = "employee")
+public abstract class Employee extends User {
 
-    private Integer salariu;
+    private Integer salary;
+
+    private LocalDate birthDate;
+    private LocalDate employmentDate;
+    private Integer workHoursPerDay;
+    private Integer ptoDays;
 
     @ManyToOne
     @JoinColumn(name = "id_manager")
-    private Angajat manager;
+    private Employee manager;
 
     @ManyToOne
     @JoinColumn(name = "id_restaurant")

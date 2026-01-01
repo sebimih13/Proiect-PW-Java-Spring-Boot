@@ -1,20 +1,14 @@
 package com.unibuc.restaurant_manager.service;
 
-import com.unibuc.restaurant_manager.exception.UnauthorizedAccessException;
-import com.unibuc.restaurant_manager.model.Utilizator;
-import com.unibuc.restaurant_manager.repository.UtilizatorRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.util.Optional;
 
 @Service
 public class JWTService {
