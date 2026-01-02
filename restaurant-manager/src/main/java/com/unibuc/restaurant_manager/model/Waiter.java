@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "waiter")
-public class Waiter extends Employee {
+public final class Waiter extends Employee {
 
     private String englishLevel;
 

@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "drink")
-public class Drink extends Product {
+public final class Drink extends Product {
 
     private Integer ml;
 

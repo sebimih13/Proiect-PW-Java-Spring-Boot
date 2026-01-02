@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CredentialsDto {
+public final class CredentialsDto {
 
     @NotBlank(message = "username is required and cannot be blank")
     private String username;

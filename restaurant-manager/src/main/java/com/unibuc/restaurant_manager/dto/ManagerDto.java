@@ -7,8 +7,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public final class CustomerDto extends UserDto {
+public final class ManagerDto extends EmployeeDto {
 
-    private String address;
+    private String educationLevel;
 
 }

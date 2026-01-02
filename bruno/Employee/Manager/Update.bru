@@ -5,9 +5,28 @@ meta {
 }
 
 put {
-  url: {{url}}/employees/manager
-  body: none
-  auth: inherit
+  url: {{url}}/employee/manager
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
+}
+
+body:json {
+  {
+    "username": "Manager-Sef",
+    "password": "Manager1234",
+    "firstName": "Manager-Sef",
+    "lastName": "Manager-Boss",
+    "email": "manager-sef@hotmail.com",
+    "phoneNumber": "0775100200",
+    "CNP": "1111111111111",
+    "IDSeries": "RX",
+    "IDNumber": "100000",
+    "birthDate": "13-04-2000"
+  }
 }
 
 settings {

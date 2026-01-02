@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
-public class PurchaseOrderService {
+public final class PurchaseOrderService {
 
     @Autowired
     private CustomerRepository customerRepository;

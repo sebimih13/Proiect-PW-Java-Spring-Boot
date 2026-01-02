@@ -16,6 +16,11 @@ public class RoleAuthorizationAspect {
     @Autowired
     private JWTService jwtService;
 
+    @Before("@annotation(com.unibuc.restaurant_manager.annotation.AdminOnly)")
+    public void checkAdminAuthorization() {
+        jwtService.checkAdmin();
+    }
+
     @Before("@annotation(com.unibuc.restaurant_manager.annotation.CustomerOnly)")
     public void checkCustomerAuthorization() {
         checkAuthorization(Customer.class);

@@ -1,0 +1,29 @@
+meta {
+  name: Add restaurant
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/admin/restaurant
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {
+    "name": "Restaurant Bambucea",
+    "city": "Bucuresti",
+    "address": "Bucuresti",
+    "phoneNumber": "0720000100"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

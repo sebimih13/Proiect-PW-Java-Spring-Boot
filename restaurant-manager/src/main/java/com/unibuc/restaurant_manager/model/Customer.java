@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "customer")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Customer extends User {
+public final class Customer extends User {
 
     @OneToMany(mappedBy = "customer")
     private List<PurchaseOrder> orders;

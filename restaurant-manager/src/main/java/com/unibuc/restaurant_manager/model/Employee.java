@@ -1,5 +1,6 @@
 package com.unibuc.restaurant_manager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -40,6 +41,7 @@ public class Employee extends User {
 
     @ManyToOne
     @JoinColumn(name = "id_restaurant")
+    @JsonBackReference
     private Restaurant restaurant;
 
 }

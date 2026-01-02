@@ -17,7 +17,7 @@ import javax.crypto.SecretKey;
 import java.util.Optional;
 
 @Service
-public class JWTService {
+public final class JWTService {
 
     private final String secretKey;
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
@@ -28,6 +28,9 @@ public class JWTService {
     @Autowired
     public JWTService(@Value("${security.jwt.secret-key}") String secretKey) {
         this.secretKey = secretKey;
+
+        // Admin Token Generation
+        System.out.println("Admin Token: " + getToken(("admin")));
     }
 
     private SecretKey getSecretKey() {
@@ -54,6 +57,17 @@ public class JWTService {
 
     public static String encryptPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    public void checkAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof String userId) {
+            if (userId.equals("admin")) {
+                return;
+            }
+        }
+
+        throw new UnauthorizedAccessException();
     }
 
     public User getUser() {

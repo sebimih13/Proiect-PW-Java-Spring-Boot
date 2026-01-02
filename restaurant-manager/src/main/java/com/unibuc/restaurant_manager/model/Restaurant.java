@@ -1,16 +1,19 @@
 package com.unibuc.restaurant_manager.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "restaurant")
-public class Restaurant {
+public final class Restaurant {
 
     @Id
     @Column(name = "id_restaurant")
@@ -24,6 +27,7 @@ public class Restaurant {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "restaurant")
+    @JsonManagedReference
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "restaurant")

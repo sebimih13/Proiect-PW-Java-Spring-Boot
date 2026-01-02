@@ -25,9 +25,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/customer/**").permitAll() // TODO
-                        .requestMatchers(HttpMethod.GET, "/employee/**").permitAll() // TODO
-                        .requestMatchers(HttpMethod.GET, "/library/{customerId}").permitAll() // TODO
+                        .requestMatchers(HttpMethod.GET, "/customer/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/employee/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

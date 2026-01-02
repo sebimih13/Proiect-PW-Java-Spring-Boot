@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "cook")
-public class Cook extends Employee {
+public final class Cook extends Employee {
 
     private String specialization;
 

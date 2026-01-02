@@ -14,7 +14,7 @@ import java.util.List;
 @SuperBuilder
 @Entity
 @Table(name = "purchase_order")
-public class PurchaseOrder {
+public final class PurchaseOrder {
 
     @Id
     @Column(name = "id_purchase_order")

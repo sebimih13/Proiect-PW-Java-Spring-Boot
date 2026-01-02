@@ -4,7 +4,6 @@ import com.unibuc.restaurant_manager.annotation.CustomerOnly;
 import com.unibuc.restaurant_manager.dto.CustomerDto;
 import com.unibuc.restaurant_manager.dto.PurchaseOrderDto;
 import com.unibuc.restaurant_manager.model.Customer;
-import com.unibuc.restaurant_manager.model.PurchaseOrder;
 import com.unibuc.restaurant_manager.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +19,16 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @GetMapping("")
+    @ResponseBody
+    public ResponseEntity<?> getCustomer(@RequestParam(value = "id", required = true) Integer customerId) {
+        return ResponseEntity.ok(customerService.getUserById(customerId));
+    }
+
     @GetMapping("/all")
     @ResponseBody
     public ResponseEntity<List<Customer>> getAllCustomers() {
         return ResponseEntity.ok(customerService.getAllUsers());
-    }
-
-    @GetMapping("")
-    @ResponseBody
-    public ResponseEntity<?> getCustomers(@RequestParam(value = "Id", required = true) Integer customerId) {
-        return ResponseEntity.ok(customerService.getUserById(customerId));
     }
 
     @PutMapping("")

@@ -12,7 +12,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PurchaseOrderDto {
+public final class PurchaseOrderDto {
 
     public enum Status {
         PENDING,

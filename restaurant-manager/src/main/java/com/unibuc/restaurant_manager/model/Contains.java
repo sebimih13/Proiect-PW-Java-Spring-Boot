@@ -13,7 +13,7 @@ import java.util.Objects;
 @SuperBuilder
 @Entity
 @Table(name = "contains")
-public class Contains {
+public final class Contains {
 
     @EmbeddedId
     private ContainsId id;

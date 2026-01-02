@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContainsDto {
+public final class ContainsDto {
 
     @NotNull(message = "productId cannot be null")
     private Integer productId;

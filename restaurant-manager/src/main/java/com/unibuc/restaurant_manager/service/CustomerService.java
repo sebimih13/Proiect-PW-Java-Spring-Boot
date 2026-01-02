@@ -40,7 +40,7 @@ public final class CustomerService extends UserService<Customer, CustomerDto> {
     }
 
     @Override
-    protected UserMapper<Customer, CustomerDto> getMapper() {
+    protected CustomerMapper getMapper() {
         return customerMapper;
     }
 
