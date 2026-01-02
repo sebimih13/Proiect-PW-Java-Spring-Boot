@@ -5,9 +5,13 @@ meta {
 }
 
 delete {
-  url: {{url}}/customers/order/{{orderId}}
+  url: {{url}}/customer/order/{{orderId}}
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
 }
 
 settings {

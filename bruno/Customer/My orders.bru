@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/customers/order
+  url: {{url}}/customer/orders
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
 }
 
 settings {

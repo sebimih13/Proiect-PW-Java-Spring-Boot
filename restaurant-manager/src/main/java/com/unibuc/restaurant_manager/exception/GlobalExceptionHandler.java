@@ -66,7 +66,7 @@ public class GlobalExceptionHandler {
             return ResponseEntity.badRequest().body(Map.of("errors", errors));
         }
 
-        errors.put("error", "Invalid date format");
+        errors.put("error", e.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("errors", errors));
     }
 

@@ -2,6 +2,7 @@ package com.unibuc.restaurant_manager.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,6 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "purchase_order")
 public class PurchaseOrder {
@@ -21,7 +23,7 @@ public class PurchaseOrder {
 
     private String status;
     private LocalDate data;
-    private LocalTime ora;
+    private LocalTime time;
 
     @ManyToOne
     @JoinColumn(name = "id_customer")

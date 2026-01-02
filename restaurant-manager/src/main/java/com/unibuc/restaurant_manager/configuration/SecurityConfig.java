@@ -25,10 +25,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/customers/**").permitAll() // TODO
-                        .requestMatchers(HttpMethod.GET, "/developers/**").permitAll() // TODO
-                        .requestMatchers(HttpMethod.GET, "/dlcs/**").permitAll() // TODO
-                        .requestMatchers(HttpMethod.GET, "/games/**").permitAll() // TODO
+                        .requestMatchers(HttpMethod.GET, "/customer/**").permitAll() // TODO
+                        .requestMatchers(HttpMethod.GET, "/employee/**").permitAll() // TODO
                         .requestMatchers(HttpMethod.GET, "/library/{customerId}").permitAll() // TODO
                         .anyRequest().authenticated()
                 )

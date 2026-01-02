@@ -5,9 +5,17 @@ meta {
 }
 
 put {
-  url: {{url}}/customers/order/{{orderId}}
+  url: {{url}}/customer/orders?id=1
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+params:query {
+  id: 1
+}
+
+auth:bearer {
+  token: {{tokenUser}}
 }
 
 settings {

@@ -5,9 +5,25 @@ meta {
 }
 
 post {
-  url: {{url}}/customers/order
-  body: none
-  auth: inherit
+  url: {{url}}/customer/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
+}
+
+body:json {
+  {
+    "restaurantId": "1",
+    "products": [
+      {
+        "productId": 1
+        "quantity": 
+      }
+    ]
+  }
 }
 
 settings {
