@@ -1,6 +1,6 @@
 package com.unibuc.restaurant_manager.service;
 
-import com.unibuc.restaurant_manager.dto.PromoteManagerDto;
+import com.unibuc.restaurant_manager.dto.AssignManagerDto;
 import com.unibuc.restaurant_manager.dto.RestaurantDto;
 import com.unibuc.restaurant_manager.exception.NotFoundException;
 import com.unibuc.restaurant_manager.exception.ValidationException;
@@ -30,15 +30,15 @@ public class AdminService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Manager addManager(PromoteManagerDto promoteManagerDto) {
-        Employee employee = employeeRepository.findById(promoteManagerDto.getEmployeeID())
-                .orElseThrow(() -> new NotFoundException(String.format("Employee with id '%d' not found", promoteManagerDto.getEmployeeID())));
+    public Manager addManager(AssignManagerDto assignManagerDto) {
+        Employee employee = employeeRepository.findById(assignManagerDto.getEmployeeId())
+                .orElseThrow(() -> new NotFoundException(String.format("Employee with id '%d' not found", assignManagerDto.getEmployeeId())));
 
-        Restaurant restaurant = restaurantRepository.findById(promoteManagerDto.getRestaurantId())
-                .orElseThrow(() -> new NotFoundException(String.format("Restaurant with id '%d' not found", promoteManagerDto.getRestaurantId())));
+        Restaurant restaurant = restaurantRepository.findById(assignManagerDto.getRestaurantId())
+                .orElseThrow(() -> new NotFoundException(String.format("Restaurant with id '%d' not found", assignManagerDto.getRestaurantId())));
 
         if (employee instanceof Manager) {
-            throw new ValidationException(String.format("Employee with id '%d' is already a manager", promoteManagerDto.getEmployeeID()));
+            throw new ValidationException(String.format("Employee with id '%d' is already a manager", assignManagerDto.getEmployeeId()));
         }
 
         employee.setRestaurant(restaurant);

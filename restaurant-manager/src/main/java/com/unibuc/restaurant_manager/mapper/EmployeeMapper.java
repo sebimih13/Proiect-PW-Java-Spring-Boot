@@ -5,7 +5,7 @@ import com.unibuc.restaurant_manager.model.Employee;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class EmployeeMapper<U extends Employee, D extends EmployeeDto> extends UserMapper<U, D> {
+public class EmployeeMapper<U extends Employee, D extends EmployeeDto> extends UserMapper<U, D> {
 
     @Override
     public void updateEntityFromDto(D dto, U entity) {

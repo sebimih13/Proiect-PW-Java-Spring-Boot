@@ -8,10 +8,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public final class PromoteManagerDto {
+public final class AssignManagerDto {
 
     @NotNull(message = "employeeID cannot be null")
-    private Integer employeeID;
+    private Integer employeeId;
 
     @NotNull(message = "restaurantId cannot be null")
     private Integer restaurantId;

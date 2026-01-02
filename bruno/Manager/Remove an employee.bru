@@ -5,9 +5,17 @@ meta {
 }
 
 put {
-  url: 
+  url: {{url}}/employee/manager/remove?id=8
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+params:query {
+  id: 8
+}
+
+auth:bearer {
+  token: {{tokenUser}}
 }
 
 settings {

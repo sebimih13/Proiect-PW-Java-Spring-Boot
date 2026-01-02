@@ -1,7 +1,7 @@
 package com.unibuc.restaurant_manager.controller;
 
 import com.unibuc.restaurant_manager.annotation.AdminOnly;
-import com.unibuc.restaurant_manager.dto.PromoteManagerDto;
+import com.unibuc.restaurant_manager.dto.AssignManagerDto;
 import com.unibuc.restaurant_manager.dto.RestaurantDto;
 import com.unibuc.restaurant_manager.service.AdminService;
 import jakarta.validation.Valid;
@@ -19,8 +19,8 @@ public class AdminController {
     @PutMapping("/manager")
     @ResponseBody
     @AdminOnly
-    public ResponseEntity<?> addManager(@Valid @RequestBody PromoteManagerDto promoteManagerDto) {
-        return ResponseEntity.ok(adminService.addManager(promoteManagerDto));
+    public ResponseEntity<?> addManager(@Valid @RequestBody AssignManagerDto assignManagerDto) {
+        return ResponseEntity.ok(adminService.addManager(assignManagerDto));
     }
 
     @PostMapping("/restaurant")

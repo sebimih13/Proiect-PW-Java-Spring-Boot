@@ -1,0 +1,27 @@
+meta {
+  name: Assign employee
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{url}}/employee/manager/assign
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
+}
+
+body:json {
+  {
+    employeeId: "5",
+    role: "COOK"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

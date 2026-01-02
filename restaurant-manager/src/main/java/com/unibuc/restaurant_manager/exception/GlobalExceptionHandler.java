@@ -38,15 +38,15 @@ public class GlobalExceptionHandler {
         switch (e.getErrorCode()) {
             case 1062:
                 final int index = e.getMessage().indexOf("for key");
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage().substring(0, index).trim());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage().substring(0, index).trim()));
             default:
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
         }
     }
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<?> handleValidationException(ValidationException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
     }
 
     @ExceptionHandler(UnauthorizedAccessException.class)
