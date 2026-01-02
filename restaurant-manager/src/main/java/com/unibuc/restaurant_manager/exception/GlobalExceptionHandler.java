@@ -1,6 +1,5 @@
 package com.unibuc.restaurant_manager.exception;
 
-import com.unibuc.restaurant_manager.dto.ErrorStringDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +12,6 @@ import tools.jackson.databind.exc.InvalidFormatException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.unibuc.restaurant_manager.utils.ResponseUtils.unauthorized;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,7 +30,7 @@ public class GlobalExceptionHandler {
                         errors.put(error.getField(), error.getDefaultMessage())
                 );
 
-        return ResponseEntity.badRequest().body(Map.of("errors", errors));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("errors", errors));
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
@@ -49,12 +46,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<?> handleValidationException(ValidationException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
     @ExceptionHandler(UnauthorizedAccessException.class)
-    public ResponseEntity<ErrorStringDto> handleUnauthorized() {
-        return unauthorized();
+    public ResponseEntity<?> handleUnauthorized() {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -70,7 +67,12 @@ public class GlobalExceptionHandler {
         }
 
         errors.put("error", "Invalid date format");
-        return ResponseEntity.badRequest().body(Map.of("errors", errors));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("errors", errors));
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> handleNotFoundException(NotFoundException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
     }
 
 }

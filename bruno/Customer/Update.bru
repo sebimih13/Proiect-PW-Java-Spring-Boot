@@ -6,8 +6,24 @@ meta {
 
 put {
   url: {{url}}/customers
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
+}
+
+body:json {
+  {
+      "username": "FixBambucea",
+      "password": "FixBambucea12",
+      "firstName": "Fix",
+      "lastName": "Bambucea",
+      "email": "fix.bambucea@hotmail.com",
+      "phoneNumber": "0775200300",
+      "address": "Bucuresti NOU"
+  }
 }
 
 settings {

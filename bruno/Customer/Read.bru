@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/customers/{{customerId}}
+  url: {{url}}/customers?customerId=1
   body: none
   auth: inherit
+}
+
+params:query {
+  customerId: 1
 }
 
 settings {
