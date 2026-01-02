@@ -1,0 +1,33 @@
+meta {
+  name: Edit dish
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{url}}/employee/cook/edit?id=2
+  body: json
+  auth: bearer
+}
+
+params:query {
+  id: 2
+}
+
+auth:bearer {
+  token: {{tokenUser}}
+}
+
+body:json {
+  {
+    "name": "Papanasi",
+    "description": "buni de tot 123",
+    "price": 30,
+    "grams": 300
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

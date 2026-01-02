@@ -1,0 +1,29 @@
+meta {
+  name: Add dish
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{url}}/employee/cook/add
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUser}}
+}
+
+body:json {
+  {
+    "name": "Papanasi",
+    "description": "buni de tot",
+    "price": 30,
+    "grams": 300
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
