@@ -37,7 +37,7 @@ public final class PurchaseOrderService {
                 .orElseThrow(() -> new NotFoundException(String.format("Restaurant with id '%d' not found", purchaseOrderDto.getRestaurantId())));
 
         PurchaseOrder purchaseOrder = PurchaseOrder.builder()
-                .status(PurchaseOrderDto.Status.PENDING.toString())
+                .status(PurchaseOrder.Status.PENDING)
                 .data(LocalDate.now())
                 .time(LocalTime.now())
                 .customer(customer)

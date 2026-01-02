@@ -1,5 +1,6 @@
 package com.unibuc.restaurant_manager.dto;
 
+import com.unibuc.restaurant_manager.model.PurchaseOrder;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -14,12 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public final class PurchaseOrderDto {
 
-    public enum Status {
-        PENDING,
-        COMPLETED,
-        CANCELED
-    }
-
+    private PurchaseOrder.Status status;
     private Integer customerId;
 
     @NotNull(message = "restaurantId cannot be null")

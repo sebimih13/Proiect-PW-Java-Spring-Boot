@@ -31,9 +31,6 @@ public final class ManagerService extends UserService<Manager, ManagerDto> {
     private BartenderRepository bartenderRepository;
 
     @Autowired
-    private WaiterRepository waiterRepository;
-
-    @Autowired
     private ManagerMapper managerMapper;
 
     @Autowired
@@ -104,12 +101,6 @@ public final class ManagerService extends UserService<Manager, ManagerDto> {
                 Bartender newBartender = Bartender.fromEmployee(employee);
                 employeeRepository.delete(employee);
                 return bartenderRepository.save(newBartender);
-            }
-
-            case WAITER -> {
-                Waiter newWaiter = Waiter.fromEmployee(employee);
-                employeeRepository.delete(employee);
-                return waiterRepository.save(newWaiter);
             }
 
             default -> {

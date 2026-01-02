@@ -16,12 +16,18 @@ import java.util.List;
 @Table(name = "purchase_order")
 public final class PurchaseOrder {
 
+    public enum Status {
+        PENDING,
+        COMPLETED,
+        CANCELED
+    }
+
     @Id
     @Column(name = "id_purchase_order")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String status;
+    private Status status;
     private LocalDate data;
     private LocalTime time;
 

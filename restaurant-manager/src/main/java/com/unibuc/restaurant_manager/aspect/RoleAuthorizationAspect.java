@@ -46,11 +46,6 @@ public class RoleAuthorizationAspect {
         checkAuthorization(Bartender.class);
     }
 
-    @Before("@annotation(com.unibuc.restaurant_manager.annotation.WaiterOnly)")
-    public void checkWaiterAuthorization() {
-        checkAuthorization(Waiter.class);
-    }
-
     private void checkAuthorization(Class<?> clazz) {
         if (!clazz.isInstance(jwtService.getUser())) {
             throw new UnauthorizedAccessException();

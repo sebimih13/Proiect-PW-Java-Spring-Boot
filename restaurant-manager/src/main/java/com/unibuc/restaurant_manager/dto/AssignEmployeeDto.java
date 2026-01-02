@@ -12,8 +12,7 @@ public class AssignEmployeeDto {
 
     public enum Role {
         COOK,
-        BARTENDER,
-        WAITER
+        BARTENDER
     }
 
     @NotNull(message = "employeeId cannot be null")
