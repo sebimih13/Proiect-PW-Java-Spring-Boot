@@ -6,10 +6,12 @@ import com.unibuc.restaurant_manager.mapper.UserMapper;
 import com.unibuc.restaurant_manager.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public abstract class UserService<U extends User, D extends UserDto> {
 
     @Autowired

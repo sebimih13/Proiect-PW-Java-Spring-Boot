@@ -27,6 +27,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/customer/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/employee/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/restaurant/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
