@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: 
+  url: {{url}}/employee/bartender/mydrinks
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenBartender}}
 }
 
 settings {

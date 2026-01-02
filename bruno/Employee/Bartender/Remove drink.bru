@@ -5,9 +5,17 @@ meta {
 }
 
 delete {
-  url: 
+  url: {{url}}/employee/bartender/remove?id=12
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+params:query {
+  id: 12
+}
+
+auth:bearer {
+  token: {{tokenBartender}}
 }
 
 settings {

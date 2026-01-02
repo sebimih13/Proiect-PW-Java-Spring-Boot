@@ -6,8 +6,28 @@ meta {
 
 put {
   url: {{url}}/employee/bartender
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenBartender}}
+}
+
+body:json {
+  {
+    "username": "BartenderNew",
+    "password": "BartenderNew123",
+    "firstName": "BartenderNew",
+    "lastName": "BartenderNew",
+    "email": "BartenderNew@hotmail.com",
+    "phoneNumber": "0775200301",
+    "CNP": "0123456789124",
+    "IDSeries": "RQ",
+    "IDNumber": "501605",
+    "birthDate": "13-04-2000",
+    "specialization": "puternic"
+  }
 }
 
 settings {

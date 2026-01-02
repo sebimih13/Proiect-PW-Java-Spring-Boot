@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,5 +36,13 @@ public final class Bartender extends Employee {
     }
 
     private String specialization;
+
+    @ManyToMany
+    @JoinTable(
+            name = "bartender_drink",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_product")
+    )
+    private List<Drink> drinks;
 
 }

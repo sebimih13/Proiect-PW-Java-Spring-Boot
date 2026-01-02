@@ -11,8 +11,8 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public final class DishDto extends ProductDto {
 
-    @NotNull(message = "price cannot be null")
-    @Min(value = 1, message = "price must be at least 1")
+    @NotNull(message = "grams cannot be null")
+    @Min(value = 1, message = "grams must be at least 1")
     private Integer grams;
 
 }

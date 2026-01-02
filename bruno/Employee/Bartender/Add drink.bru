@@ -5,9 +5,22 @@ meta {
 }
 
 post {
-  url: 
-  body: none
-  auth: inherit
+  url: {{url}}/employee/bartender/add
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenBartender}}
+}
+
+body:json {
+  {
+    "name": "Cuba Libre",
+    "description": "pirat",
+    "price": 30,
+    "ml": 300
+  }
 }
 
 settings {

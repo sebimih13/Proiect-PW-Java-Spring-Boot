@@ -25,10 +25,10 @@ public final class CookService extends UserService<Cook, CookDto> {
     private DishRepository dishRepository;
 
     @Autowired
-    private CookMapper cookMapper;
+    private JWTService jwtService;
 
     @Autowired
-    private JWTService jwtService;
+    private CookMapper cookMapper;
 
     @Autowired
     private DishMapper dishMapper;

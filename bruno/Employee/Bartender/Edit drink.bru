@@ -5,9 +5,30 @@ meta {
 }
 
 put {
-  url: 
-  body: none
-  auth: inherit
+  url: {{url}}/employee/bartender/edit?id=13
+  body: json
+  auth: bearer
+}
+
+params:query {
+  id: 13
+}
+
+headers {
+  id: 14
+}
+
+auth:bearer {
+  token: {{tokenBartender}}
+}
+
+body:json {
+  {
+    "name": "Cuba Libre",
+    "description": "pirat 22",
+    "price": 30,
+    "ml": 500
+  }
 }
 
 settings {
