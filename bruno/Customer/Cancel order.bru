@@ -1,13 +1,17 @@
 meta {
-  name: Remove order
+  name: Cancel order
   type: http
   seq: 7
 }
 
 delete {
-  url: {{url}}/customer/order/{{orderId}}
+  url: {{url}}/customer/orders?id=2
   body: none
   auth: bearer
+}
+
+params:query {
+  id: 2
 }
 
 auth:bearer {

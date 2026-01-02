@@ -17,4 +17,11 @@ public interface DrinkRepository extends JpaRepository<Drink, Integer> {
     """)
     List<Drink> findDrinksByRestaurantId(Integer restaurantId);
 
+    @Query("""
+        SELECT COUNT(d) > 0
+        FROM Bartender b JOIN b.drinks d
+        WHERE b.restaurant.id = :restaurantId AND d.id = :productId
+    """)
+    boolean drinkAvailableInRestaurant(Integer restaurantId, Integer productId);
+
 }

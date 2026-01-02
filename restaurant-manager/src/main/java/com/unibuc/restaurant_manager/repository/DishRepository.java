@@ -17,4 +17,11 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
     """)
     List<Dish> findDishesByRestaurantId(Integer restaurantId);
 
+    @Query("""
+        SELECT COUNT(d) > 0
+        FROM Cook c JOIN c.dishes d
+        WHERE c.restaurant.id = :restaurantId AND d.id = :productId
+    """)
+    boolean dishAvailableInRestaurant(Integer restaurantId, Integer productId);
+
 }

@@ -30,6 +30,10 @@ public final class Contains {
 
     private Integer quantity;
 
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @SuperBuilder
     @Embeddable
     public static class ContainsId implements Serializable {
 

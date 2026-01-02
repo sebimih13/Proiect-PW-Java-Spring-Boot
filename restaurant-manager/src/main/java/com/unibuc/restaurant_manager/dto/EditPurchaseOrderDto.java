@@ -1,10 +1,10 @@
 package com.unibuc.restaurant_manager.dto;
 
-import com.unibuc.restaurant_manager.model.PurchaseOrder;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -13,13 +13,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public final class PurchaseOrderDto {
-
-    private PurchaseOrder.Status status;
-    private Integer customerId;
-
-    @NotNull(message = "restaurantId cannot be null")
-    private Integer restaurantId;
+public final class EditPurchaseOrderDto {
 
     @NotEmpty(message = "products cannot be null or empty")
     @Valid

@@ -27,8 +27,8 @@ public final class PurchaseOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Status status;
-    private LocalDate data;
+    private String status;
+    private LocalDate date;
     private LocalTime time;
 
     @ManyToOne

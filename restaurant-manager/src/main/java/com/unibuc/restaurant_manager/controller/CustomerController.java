@@ -2,7 +2,8 @@ package com.unibuc.restaurant_manager.controller;
 
 import com.unibuc.restaurant_manager.annotation.CustomerOnly;
 import com.unibuc.restaurant_manager.dto.CustomerDto;
-import com.unibuc.restaurant_manager.dto.PurchaseOrderDto;
+import com.unibuc.restaurant_manager.dto.EditPurchaseOrderDto;
+import com.unibuc.restaurant_manager.dto.NewPurchaseOrderDto;
 import com.unibuc.restaurant_manager.model.Customer;
 import com.unibuc.restaurant_manager.service.CustomerService;
 import jakarta.validation.Valid;
@@ -34,8 +35,8 @@ public class CustomerController {
     @PutMapping("")
     @ResponseBody
     @CustomerOnly
-    public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody CustomerDto customer) {
-        return ResponseEntity.ok(customerService.updateLoggedUser(customer));
+    public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody CustomerDto customerDto) {
+        return ResponseEntity.ok(customerService.updateLoggedUser(customerDto));
     }
 
     @GetMapping("/orders")
@@ -48,8 +49,22 @@ public class CustomerController {
     @PostMapping("/orders")
     @ResponseBody
     @CustomerOnly
-    public ResponseEntity<?> addOrder(@Valid @RequestBody PurchaseOrderDto order) {
-        return ResponseEntity.ok(customerService.addOrder(order));
+    public ResponseEntity<?> addOrder(@Valid @RequestBody NewPurchaseOrderDto newPurchaseOrderDto) {
+        return ResponseEntity.ok(customerService.addOrder(newPurchaseOrderDto));
+    }
+
+    @PutMapping("/orders")
+    @ResponseBody
+    @CustomerOnly
+    public ResponseEntity<?> editOrder(@RequestParam(value = "id", required = true) Integer orderId, @Valid @RequestBody EditPurchaseOrderDto editPurchaseOrderDto) {
+        return ResponseEntity.ok(customerService.editOrder(orderId, editPurchaseOrderDto));
+    }
+
+    @DeleteMapping("/orders")
+    @ResponseBody
+    @CustomerOnly
+    public ResponseEntity<?> removeOrder(@RequestParam(value = "id", required = true) Integer orderId) {
+        return ResponseEntity.ok(customerService.removeOrder(orderId));
     }
 
 }
