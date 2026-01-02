@@ -2,9 +2,11 @@ package com.unibuc.restaurant_manager.service;
 
 import com.unibuc.restaurant_manager.dto.AssignEmployeeDto;
 import com.unibuc.restaurant_manager.dto.ManagerDto;
+import com.unibuc.restaurant_manager.dto.PurchaseOrderResponseDto;
 import com.unibuc.restaurant_manager.exception.NotFoundException;
 import com.unibuc.restaurant_manager.exception.ValidationException;
 import com.unibuc.restaurant_manager.mapper.ManagerMapper;
+import com.unibuc.restaurant_manager.mapper.PurchaseOrderMapper;
 import com.unibuc.restaurant_manager.model.*;
 import com.unibuc.restaurant_manager.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public final class ManagerService extends UserService<Manager, ManagerDto> {
@@ -31,7 +34,13 @@ public final class ManagerService extends UserService<Manager, ManagerDto> {
     private BartenderRepository bartenderRepository;
 
     @Autowired
+    private PurchaseOrderRepository purchaseOrderRepository;
+
+    @Autowired
     private ManagerMapper managerMapper;
+
+    @Autowired
+    private PurchaseOrderMapper purchaseOrderMapper;
 
     @Autowired
     private JWTService jwtService;
@@ -123,6 +132,38 @@ public final class ManagerService extends UserService<Manager, ManagerDto> {
         employeeRepository.save(employee);
 
         return Map.of("success", String.format("Employee with id '%d' has been removed from your team", employeeId));
+    }
+
+    public List<PurchaseOrderResponseDto> getAllOrders() {
+        Manager manager = (Manager) jwtService.getUser();
+        if (manager.getRestaurant() == null) {
+            throw new ValidationException("Manager does not have a restaurant assigned");
+        }
+
+        List<PurchaseOrder> orders = purchaseOrderRepository.findByRestaurant(manager.getRestaurant());
+
+        return orders.stream()
+                .map(purchaseOrderMapper::toResponseDto)
+                .collect(Collectors.toList());
+    }
+
+    public PurchaseOrderResponseDto completeOrder(Integer purchaseOrderId) {
+        Manager manager = (Manager) jwtService.getUser();
+        PurchaseOrder order = purchaseOrderRepository.findById(purchaseOrderId)
+                .orElseThrow(() -> new NotFoundException(String.format("Purchase order with id '%d' not found", purchaseOrderId)));
+
+        if (!order.getRestaurant().getId().equals(manager.getRestaurant().getId())) {
+            throw new ValidationException("You can only complete orders from your own restaurant");
+        }
+
+        if (!order.getStatus().equals(PurchaseOrder.Status.PENDING.toString())) {
+            throw new ValidationException("Only pending orders can be completed");
+        }
+
+        order.setStatus(PurchaseOrder.Status.COMPLETED.toString());
+        purchaseOrderRepository.save(order);
+
+        return purchaseOrderMapper.toResponseDto(order);
     }
 
 }

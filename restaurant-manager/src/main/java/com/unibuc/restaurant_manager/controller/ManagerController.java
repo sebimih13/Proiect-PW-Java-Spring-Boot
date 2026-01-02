@@ -63,4 +63,18 @@ public class ManagerController {
         return ResponseEntity.ok(managerService.removeEmployee(employeeId));
     }
 
+    @GetMapping("/orders/all")
+    @ResponseBody
+    @ManagerOnly
+    public ResponseEntity<?> getAllOrders() {
+        return ResponseEntity.ok(managerService.getAllOrders());
+    }
+
+    @PutMapping("/orders/complete")
+    @ResponseBody
+    @ManagerOnly
+    public ResponseEntity<?> completeOrder(@RequestParam(value = "id", required = true) Integer purchadeOrderId) {
+        return ResponseEntity.ok(managerService.completeOrder(purchadeOrderId));
+    }
+
 }

@@ -1,21 +1,21 @@
 meta {
-  name: Cancel order
+  name: Complete Order
   type: http
-  seq: 7
+  seq: 9
 }
 
-delete {
-  url: {{url}}/customer/orders?id=3
+put {
+  url: {{url}}/employee/manager/orders/complete?id=4
   body: none
   auth: bearer
 }
 
 params:query {
-  id: 3
+  id: 4
 }
 
 auth:bearer {
-  token: {{tokenCustomer}}
+  token: {{tokenManager}}
 }
 
 settings {

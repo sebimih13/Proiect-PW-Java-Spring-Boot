@@ -18,8 +18,7 @@ public final class PurchaseOrder {
 
     public enum Status {
         PENDING,
-        COMPLETED,
-        CANCELED
+        COMPLETED
     }
 
     @Id
