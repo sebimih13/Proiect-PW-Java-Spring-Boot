@@ -90,7 +90,7 @@ public final class CookService extends UserService<Cook, CookDto> {
                 .orElseThrow(() -> new NotFoundException(String.format("Dish with id '%d' not found", dishId)));
 
         if (cook.getDishes().stream().noneMatch(d -> d.getId().equals(dish.getId()))) {
-            throw new ValidationException("This dish is not yours");
+            throw new ValidationException("You can only remove your own dishes");
         }
 
         cook.getDishes().remove(dish);
