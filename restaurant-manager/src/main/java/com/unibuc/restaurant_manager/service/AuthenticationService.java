@@ -51,8 +51,7 @@ public final class AuthenticationService {
                 .address(customer.getAddress())
                 .build();
 
-        customerRepository.save(newCustomer);
-        return newCustomer;
+        return customerRepository.save(newCustomer);
     }
 
     public Employee signupEmployee(EmployeeDto employee) {
@@ -69,8 +68,7 @@ public final class AuthenticationService {
                 .IDNumber(employee.getIDNumber())
                 .build();
 
-        employeeRepository.save(newEmployee);
-        return newEmployee;
+        return employeeRepository.save(newEmployee);
     }
 
 }

@@ -81,16 +81,6 @@ public final class JWTService {
         throw new UnauthorizedAccessException();
     }
 
-//    public static User getAuthorizedUser(Role role) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.getPrincipal() instanceof String userId) {
-//            User user = userRepository.findByIdAndRole(userId, role);
-//            if (user != null) return user;
-//        }
-//
-//        throw new UnauthorizedAccessException();
-//    }
-
     public static boolean isPasswordValid(String providedPassword, String actualPassword) {
         return passwordEncoder.matches(providedPassword, actualPassword);
     }

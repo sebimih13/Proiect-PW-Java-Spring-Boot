@@ -25,6 +25,5 @@ public final class Customer extends User {
     private Integer loyaltyPoints;
 
     // TODO: lastVisitDate
-    // TODO: feedbackScore
 
 }
