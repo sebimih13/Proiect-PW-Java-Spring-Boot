@@ -139,6 +139,7 @@ public class CustomerServiceTest {
                 .hasMessageContaining("Restaurant with id '2' not found");
     }
 
+    @Test
     void addOrder_WhenProductNotAvailable_ShouldThrowValidationException() {
         NewPurchaseOrderDto newOrder = NewPurchaseOrderDto.builder()
                 .restaurantId(1)

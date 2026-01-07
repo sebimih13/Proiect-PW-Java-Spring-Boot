@@ -19,5 +19,6 @@ public class PurchaseOrderResponseDto {
     private LocalTime time;
     private String restaurantName;
     private List<ContainsResponseDto> products;
+    private Long totalPrice;
 
 }

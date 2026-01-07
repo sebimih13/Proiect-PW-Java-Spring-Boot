@@ -23,6 +23,12 @@ public final class PurchaseOrderMapper {
                                 .build())
                         .collect(Collectors.toList());
 
+        Long totalPrice = entity.getProducts() == null
+                ? 0L
+                : entity.getProducts().stream()
+                .mapToLong(c ->c.getProduct().getPrice() * c.getQuantity())
+                .sum();
+
         return PurchaseOrderResponseDto.builder()
                 .id(entity.getId())
                 .status(entity.getStatus())
@@ -30,6 +36,7 @@ public final class PurchaseOrderMapper {
                 .time(entity.getTime())
                 .restaurantName(entity.getRestaurant().getName())
                 .products(products)
+                .totalPrice(totalPrice)
                 .build();
     }
 
