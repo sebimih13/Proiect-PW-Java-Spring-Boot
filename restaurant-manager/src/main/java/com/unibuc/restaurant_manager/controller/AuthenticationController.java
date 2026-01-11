@@ -8,6 +8,7 @@ import com.unibuc.restaurant_manager.model.Customer;
 import com.unibuc.restaurant_manager.model.Employee;
 import com.unibuc.restaurant_manager.model.User;
 import com.unibuc.restaurant_manager.service.AuthenticationService;
+import com.unibuc.restaurant_manager.validation.OnCreate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -18,6 +19,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -80,7 +82,7 @@ public class AuthenticationController {
     })
     @PostMapping("/signup/customer")
     @ResponseBody
-    public ResponseEntity<User> signupCustomer(@Valid @RequestBody CustomerDto customer) {
+    public ResponseEntity<User> signupCustomer(@Valid @RequestBody @Validated(OnCreate.class) CustomerDto customer) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authenticationService.signupCustomer(customer));
     }
 
@@ -107,7 +109,7 @@ public class AuthenticationController {
     })
     @PostMapping("/signup/employee")
     @ResponseBody
-    public ResponseEntity<User> signupEmployee(@Valid @RequestBody EmployeeDto employee) {
+    public ResponseEntity<User> signupEmployee(@Valid @RequestBody @Validated(OnCreate.class) EmployeeDto employee) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authenticationService.signupEmployee(employee));
     }
 

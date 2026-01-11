@@ -5,6 +5,7 @@ import com.unibuc.restaurant_manager.dto.CookDto;
 import com.unibuc.restaurant_manager.dto.DishDto;
 import com.unibuc.restaurant_manager.model.Dish;
 import com.unibuc.restaurant_manager.service.CookService;
+import com.unibuc.restaurant_manager.validation.OnCreate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -14,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -111,7 +113,7 @@ public class CookController {
     @PostMapping("/add")
     @ResponseBody
     @CookOnly
-    public ResponseEntity<?> addDish(@Valid @RequestBody DishDto dishDto) {
+    public ResponseEntity<?> addDish(@Valid @RequestBody @Validated(OnCreate.class) DishDto dishDto) {
         return ResponseEntity.ok(cookService.addDish(dishDto));
     }
 

@@ -5,13 +5,13 @@ meta {
 }
 
 put {
-  url: {{url}}/employee/bartender/edit?id=13
+  url: {{url}}/employee/bartender/edit?id=1
   body: json
   auth: bearer
 }
 
 params:query {
-  id: 13
+  id: 1
 }
 
 headers {
@@ -24,10 +24,7 @@ auth:bearer {
 
 body:json {
   {
-    "name": "Cuba Libre",
-    "description": "pirat 22",
-    "price": 30,
-    "ml": 500
+    "price": 50
   }
 }
 

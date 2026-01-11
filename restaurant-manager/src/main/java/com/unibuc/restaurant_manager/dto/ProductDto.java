@@ -1,5 +1,6 @@
 package com.unibuc.restaurant_manager.dto;
 
+import com.unibuc.restaurant_manager.validation.OnCreate;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -11,13 +12,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public abstract class ProductDto {
 
-    @NotNull(message = "name is required and cannot be blank")
+    @NotNull(groups = OnCreate.class, message = "name is required and cannot be blank")
     private String name;
 
-    @NotNull(message = "description is required and cannot be blank")
+    @NotNull(groups = OnCreate.class, message = "description is required and cannot be blank")
     private String description;
 
-    @NotNull(message = "price cannot be null")
+    @NotNull(groups = OnCreate.class, message = "price cannot be null")
     @Min(value = 1, message = "price must be at least 1")
     private Integer price;
 
