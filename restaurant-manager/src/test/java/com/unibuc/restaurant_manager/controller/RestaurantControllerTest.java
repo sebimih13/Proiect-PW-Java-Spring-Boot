@@ -84,10 +84,18 @@ public class RestaurantControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(restaurants.size()))
-                .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].name").value("Restaurant Test"))
-                .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].name").value("Second Restaurant"));
+                .andExpect(jsonPath("$[0].id").value(restaurants.get(0).getId()))
+                .andExpect(jsonPath("$[0].name").value(restaurants.get(0).getName()))
+                .andExpect(jsonPath("$[0].stars").value(restaurants.get(0).getStars()))
+                .andExpect(jsonPath("$[0].city").value(restaurants.get(0).getCity()))
+                .andExpect(jsonPath("$[0].address").value(restaurants.get(0).getAddress()))
+                .andExpect(jsonPath("$[0].phoneNumber").value(restaurants.get(0).getPhoneNumber()))
+                .andExpect(jsonPath("$[1].id").value(restaurants.get(1).getId()))
+                .andExpect(jsonPath("$[1].name").value(restaurants.get(1).getName()))
+                .andExpect(jsonPath("$[1].stars").value(restaurants.get(1).getStars()))
+                .andExpect(jsonPath("$[1].city").value(restaurants.get(1).getCity()))
+                .andExpect(jsonPath("$[1].address").value(restaurants.get(1).getAddress()))
+                .andExpect(jsonPath("$[1].phoneNumber").value(restaurants.get(1).getPhoneNumber()));
     }
 
     @Test

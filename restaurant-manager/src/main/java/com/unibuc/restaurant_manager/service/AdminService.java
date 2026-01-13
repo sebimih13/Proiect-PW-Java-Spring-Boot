@@ -27,9 +27,6 @@ public class AdminService {
     @Autowired
     private ManagerRepository managerRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     public Manager addManager(AssignManagerDto assignManagerDto) {
         Employee employee = employeeRepository.findById(assignManagerDto.getEmployeeId())
                 .orElseThrow(() -> new NotFoundException(String.format("Employee with id '%d' not found", assignManagerDto.getEmployeeId())));
