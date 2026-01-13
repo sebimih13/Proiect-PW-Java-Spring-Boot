@@ -51,8 +51,6 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantService.getRestaurantById(restaurantId));
     }
 
-
-
     @Operation(summary = "Get all restaurants", description = "Returns a list of all restaurants")
     @ApiResponses({
             @ApiResponse(
