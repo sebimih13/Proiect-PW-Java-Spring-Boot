@@ -5,16 +5,18 @@ import com.unibuc.restaurant_manager.model.User;
 import com.unibuc.restaurant_manager.service.JWTService;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public abstract class UserMapper<U extends User, D extends UserDto> {
 
     public void updateEntityFromDto(D dto, U entity) {
-        entity.setUsername(dto.getUsername());
-        entity.setPassword(JWTService.encryptPassword(dto.getPassword()));
-        entity.setFirstName(dto.getFirstName());
-        entity.setLastName(dto.getLastName());
-        entity.setEmail(dto.getEmail());
-        entity.setPhoneNumber(dto.getPhoneNumber());
+        Optional.ofNullable(dto.getUsername()).ifPresent(entity::setUsername);
+        Optional.ofNullable(JWTService.encryptPassword(dto.getPassword())).ifPresent(entity::setPassword);
+        Optional.ofNullable(dto.getFirstName()).ifPresent(entity::setFirstName);
+        Optional.ofNullable(dto.getLastName()).ifPresent(entity::setLastName);
+        Optional.ofNullable(dto.getEmail()).ifPresent(entity::setEmail);
+        Optional.ofNullable(dto.getPhoneNumber()).ifPresent(entity::setPhoneNumber);
     }
 
 }

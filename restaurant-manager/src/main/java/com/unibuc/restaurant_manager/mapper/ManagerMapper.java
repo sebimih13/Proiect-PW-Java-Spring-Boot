@@ -4,6 +4,8 @@ import com.unibuc.restaurant_manager.dto.ManagerDto;
 import com.unibuc.restaurant_manager.model.Manager;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public final class ManagerMapper extends EmployeeMapper<Manager, ManagerDto> {
 
@@ -11,7 +13,7 @@ public final class ManagerMapper extends EmployeeMapper<Manager, ManagerDto> {
     public void updateEntityFromDto(ManagerDto dto, Manager entity) {
         super.updateEntityFromDto(dto, entity);
 
-        entity.setEducationLevel(dto.getEducationLevel());
+        Optional.ofNullable(dto.getEducationLevel()).ifPresent(entity::setEducationLevel);
     }
 
 }

@@ -4,6 +4,8 @@ import com.unibuc.restaurant_manager.dto.BartenderDto;
 import com.unibuc.restaurant_manager.model.Bartender;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public final class BartenderMapper extends EmployeeMapper<Bartender, BartenderDto> {
 
@@ -11,7 +13,7 @@ public final class BartenderMapper extends EmployeeMapper<Bartender, BartenderDt
     public void updateEntityFromDto(BartenderDto dto, Bartender entity) {
         super.updateEntityFromDto(dto, entity);
 
-        entity.setSpecialization(dto.getSpecialization());
+        Optional.ofNullable(dto.getSpecialization()).ifPresent(entity::setSpecialization);
     }
 
 }

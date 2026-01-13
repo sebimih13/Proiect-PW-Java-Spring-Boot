@@ -19,7 +19,6 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-
     @Operation(summary = "Get employee by ID", description = "Returns an employee by their ID")
     @ApiResponses({
             @ApiResponse(

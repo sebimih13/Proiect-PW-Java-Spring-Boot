@@ -1,5 +1,6 @@
 package com.unibuc.restaurant_manager.dto;
 
+import com.unibuc.restaurant_manager.validation.OnCreate;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public final class DrinkDto extends ProductDto {
 
-    @NotNull(message = "ml cannot be null")
+    @NotNull(groups = OnCreate.class, message = "ml cannot be null")
     @Min(value = 1, message = "ml must be at least 1")
     private Integer ml;
 

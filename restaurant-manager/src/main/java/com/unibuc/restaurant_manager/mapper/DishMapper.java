@@ -4,6 +4,8 @@ import com.unibuc.restaurant_manager.dto.DishDto;
 import com.unibuc.restaurant_manager.model.Dish;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public final class DishMapper extends ProductMapper<Dish, DishDto> {
 
@@ -11,7 +13,7 @@ public final class DishMapper extends ProductMapper<Dish, DishDto> {
     public void updateEntityFromDto(DishDto dto, Dish entity) {
         super.updateEntityFromDto(dto, entity);
 
-        entity.setGrams(dto.getGrams());
+        Optional.ofNullable(dto.getGrams()).ifPresent(entity::setGrams);
     }
 
 }
