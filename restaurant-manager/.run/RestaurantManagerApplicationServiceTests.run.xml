@@ -12,7 +12,7 @@
     <option name="METHOD_NAME" value="" />
     <option name="TEST_OBJECT" value="directory" />
     <option name="VM_PARAMETERS" />
-    <dir value="$PROJECT_DIR$/src/test/java/com/unibuc/restaurant_manager/service" />
+    <dir value="$PROJECT_DIR$/src/test/java/com/unibuc/restaurant_manager" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
